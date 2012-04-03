@@ -1,13 +1,13 @@
 Misc Admin Scripts
 ==================
 
-A collection of random scripts that I've created for various reasons. Quality is 1-5 with 1 being the lowest. 
+A collection of random scripts that I've created for various reasons. Quality is 1-5 with 1 being the lowest. These come with no warranty and will quite possibly break things. 
 
 apachemem.sh
 ------------
 Quality: **
 
-Calculates the correct MaxClients setting for Apache, if you're lucky. ApacheBuddy is much better than this, but AB doesn't appear to work right on some cPanel servers, hence this. It's hacky.
+Calculates the correct MaxClients setting for Apache, if you're lucky. ApacheBuddy is much better than this, but AB doesn't appear to work right on some cPanel servers, hence this. It's hacky as it combines several separate ways of doing things in a mish-mash of horribleness, yet it was thrown together quickly.
 
 fix_munin_selinux.sh
 --------------------
