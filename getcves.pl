@@ -27,7 +27,6 @@ foreach (@text) {
 
     while (m/(CVE-\d{4}-\d{4})/g) {
         push @cves, $1;
-        next;
     }
 
     if (m/((CVE-\d{4}-?)|(CVE-?))$/) {
