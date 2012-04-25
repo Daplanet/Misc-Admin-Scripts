@@ -20,7 +20,7 @@ foreach (@text) {
             push @cves, $c;
             ($prevline, $nextline) = 0;
         } else {
-            print "Error parsing:: " . $_;
+            print "Error parsing: " . $_;
             die(2);
         }
     }
