@@ -32,3 +32,9 @@ zencart_md5.py
 Quality: *****
 
 Generates a ZenCart salted MD5 password using a Python oneliner.
+
+getcves.pl
+----------
+Quality: ****
+
+Pipe in some text and it'll dump out anything that looks like a CVE reference.
