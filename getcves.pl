@@ -35,6 +35,8 @@ foreach (@text) {
     }    
 }
 
-foreach (@cves) {
+my %hash = map { $_, 1 } @cves;
+
+foreach (keys %hash) {
     print "$_\n";
 }
