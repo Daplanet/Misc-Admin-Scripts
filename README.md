@@ -38,3 +38,9 @@ getcves.pl
 Quality: ****
 
 Pipe in some text and it'll dump out anything that looks like a CVE reference.
+
+plesk_exploit_fixer.sh
+----------------------
+Quality: ****
+
+Finds and removes the 'km0ae9gr6m' exploit from PHP and JS files and changes all Plesk passwords to ensure the compromise cannot occur again.
