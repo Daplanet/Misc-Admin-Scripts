@@ -8,12 +8,13 @@ ARGF.lines do |line|
     line.chomp!
 
     if nextline
-      matches = /((^-?\d{4}-\d{4})|(^-?\d{4}))/.match(line)
-        cve.push(prevline + matches[0])
+      /((^-?\d{4}-\d{4})|(^-?\d{4}))/.match(line) do |m|
+        cves.push(prevline + m[0])
         prevline = nextline = nil
+      end
     end
 
-    /(CVE-\d{4}-\d{4})/.match(line) do |m|
+    line.scan(/(CVE-\d{4}-\d{4})/) do |m|
       cves.push(m[0])
     end
 
