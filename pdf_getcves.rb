@@ -1,4 +1,6 @@
 #!/usr/bin/env ruby
+# This will return CVE references in the given PDF file. Alternatively,
+# you can pipe text to STDIN for the same magic.
 
 require "rubygems"
 require "pdf-reader"
@@ -33,24 +35,26 @@ class CVEExtractor
   end
 end
 
-reader = false
-cvex = CVEExtractor.new
+if __FILE__ == $0
+  reader = false
+  cvex = CVEExtractor.new
 
-if ARGF.filename != "-"
-  raise ArgumentError, "Unsupported file type." if ARGF.filename[-3,3] != "pdf"
-  reader = PDF::Reader.new(ARGF.file)
-end
+  if ARGF.filename != "-"
+    raise ArgumentError, "Unsupported file type." if ARGF.filename[-3,3] != "pdf"
+    reader = PDF::Reader.new(ARGF.file)
+  end
 
-if reader
-  reader.pages.each do |page|
-    page.text.each_line do |line|
+  if reader
+    reader.pages.each do |page|
+      page.text.each_line do |line|
+        cvex.extract_cves(line)
+      end
+    end
+  else
+    ARGF.lines do |line|
       cvex.extract_cves(line)
     end
   end
-else
-  ARGF.lines do |line|
-    cvex.extract_cves(line)
-  end
-end
 
-cvex.cves.sort.uniq.each { |c| puts c }
+  cvex.cves.sort.uniq.each { |c| puts c }
+end
