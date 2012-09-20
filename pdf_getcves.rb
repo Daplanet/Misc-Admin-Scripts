@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 
+require "rubygems"
 require "pdf-reader"
 
 class CVEExtractor
