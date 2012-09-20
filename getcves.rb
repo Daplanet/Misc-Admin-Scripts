@@ -23,4 +23,4 @@ ARGF.lines do |line|
     end
 end
 
-cves.sort.each { |c| puts c }
+cves.sort.uniq.each { |c| puts c }
