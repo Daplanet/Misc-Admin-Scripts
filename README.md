@@ -33,11 +33,18 @@ Quality: *****
 
 Generates a ZenCart salted MD5 password using a Python oneliner.
 
-getcves.pl
-----------
+getcves.pl / getcves.rb
+-----------------------
 Quality: ****
 
-Pipe in some text and it'll dump out anything that looks like a CVE reference.
+Pipe in some text and it'll dump out anything that looks like a CVE reference. Now in your favourite language!
+
+pdf_getcves.rb
+--------------
+Quality: ****
+
+Give it a PDF (or pipe in some text) and it'll spew out CVE references for you!
+
 
 plesk_exploit_fixer.sh
 ----------------------
