@@ -51,3 +51,9 @@ plesk_exploit_fixer.sh
 Quality: ****
 
 Finds and removes the 'km0ae9gr6m' exploit from PHP and JS files and changes all Plesk passwords to ensure the compromise cannot occur again.
+
+server_triage.sh
+----------------
+Quality: *
+
+A triage script to run on Linux servers with issues to give you an overview of the server state and what might be wrong, could be run with curl x.com/server_triage.sh | sh.
