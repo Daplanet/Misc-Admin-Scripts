@@ -3,6 +3,12 @@ Misc Admin Scripts
 
 A collection of random scripts that I've created for various reasons. Quality is 1-5 with 1 being the lowest. These come with no warranty and will quite possibly break things. 
 
+apachebuddy-fixed.pl
+--------------------
+Quality ****
+
+This is the standard apachebuddy script but slightly fixed to work with Plesk 11 and hopefully CPanel too
+
 apachemem.sh
 ------------
 Quality: **
