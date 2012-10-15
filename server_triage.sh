@@ -3,10 +3,21 @@
 
 
 PUBLICIP=$(curl -s icanhazip.com)
+EXTIP=$PUBLICIP
 IPS=$(ifconfig | grep "inet addr" | grep -v "127.0.0.1")
 
 
-
+# CHECK FCRDNS!
+# print $EXTIP
+PTR=$(dig -x $EXTIP | grep -v ";" | grep "PTR" | awk '{print $5}')
+# print $PTR
+PTRRESOLVED=$(dig $PTR | grep -v ";" | grep "IN" | awk '{print $5}')
+# print $PTRRESOLVED
+if [ "$EXTIP" == "$PTRRESOLVED" ]; then
+  echo "FCRDNS matches $EXTIP -> $PTR -> $PTRRESOLVED"
+else
+  echo "FCRDNS does NOT match $EXTIP -> $PTR -> $PTRRESOLVED"
+fi
 
 
 
