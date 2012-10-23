@@ -62,4 +62,4 @@ server_triage.sh
 ----------------
 Quality: *
 
-A triage script to run on Linux servers with issues to give you an overview of the server state and what might be wrong, could be run with curl x.com/server_triage.sh | sh.
+A triage script to run on Linux servers with issues to give you an overview of the server state and what might be wrong, could be run with curl x.com/server_triage.sh | sh
