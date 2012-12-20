@@ -32,7 +32,7 @@ case "$1" in
           if [[ ! -e "$d" ]]; then continue; fi
           /bin/mountpoint -q "$d"
           if [[ $? != 0 ]]; then continue; fi
-          /bin/umount -l "$d"
+          /bin/umount "$d"
       done
   ;;
 
