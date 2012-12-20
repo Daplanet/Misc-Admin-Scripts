@@ -1,0 +1,46 @@
+#!/bin/bash
+# This script will mount the specified directories as tmpfs filesystems.
+# In this case, this is used so that the /var/www directory can be mounted
+# first before these are mounted on top.
+#
+# This script will always return success regardless of actual success when
+# mounting the filesystems. Failure to mount these filesystems should not 
+# be fatal to the cluster. Failure to unmount will be, however.
+#
+# DE UKFast 2012-12-20
+
+# List of directories to mount, one per line surrounded by quotes
+declare -a DIRS=(
+    "/var/www/vhosts/thesoccerstore.co.uk/htdocs/var/cache/"
+)
+# Size of the tmpfs filesystems in MB
+SIZE=64
+
+
+case "$1" in
+  start)
+      for d in $DIRS; do
+          if [[ ! -e "$d" ]]; then
+              mkdir -p "$d" || true
+          fi
+          /bin/mount -t tmpfs -o size=${SIZE}M tmpfs "$d" || true
+      done
+  ;;
+
+  stop)
+      for d in $DIRS; do
+          if [[ ! -e "$d" ]]; then continue; fi
+          /bin/mountpoint -q "$d"
+          if [[ $? != 0 ]]; then continue; fi
+          /bin/umount -l "$d"
+      done
+  ;;
+
+  status)
+  ;;
+
+  *)
+      echo "Usage: $0 {start|stop|status}"
+      exit 2
+esac
+
