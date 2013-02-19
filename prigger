@@ -1,0 +1,43 @@
+#!/usr/bin/env ruby
+
+require 'net/http'
+require 'optparse'
+
+CREATE_URL = URI.parse("http://p.rig.gr/api/create")
+
+options = {}
+OptionParser.new do |opts|
+  opts.banner = "Usage: prigger.rb [options] {filename | STDIN}"
+
+  opts.on("-t", "--title TITLE", "Title of paste") do |t|
+    options[:title] = t
+  end
+
+  opts.on("-n", "--name NAME", "Name of author") do |n|
+    options[:name] = n
+  end
+
+  opts.on("-l", "--lang LANG", "Language for syntax highlighting") do |l|
+    options[:lang] = l
+  end
+
+  opts.on("-e", "--expire EXPIRE", "Expiration in minutes") do |e|
+    options[:expire] = e
+  end
+
+  opts.on("-r", "--reply REPLY", "Reply to existing paste ID") do |r|
+    options[:reply] = r
+  end
+
+  opts.on("-p", "--private", "Mark this paste as private") do |p|
+    options[:private] = p
+  end
+end.parse!
+
+post_args = {
+  :text => ARGF.read
+}
+
+options.each {|k,v| post_args[k] = v unless options[k].nil?}
+
+puts Net::HTTP.post_form(CREATE_URL, post_args).body
