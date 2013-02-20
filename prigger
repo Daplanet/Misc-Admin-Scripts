@@ -2,6 +2,8 @@
 
 require 'net/http'
 require 'optparse'
+require 'yaml'
+
 
 CREATE_URL = URI.parse("http://p.rig.gr/api/create")
 
@@ -34,10 +36,17 @@ OptionParser.new do |opts|
   end
 end.parse!
 
+confpath = File.join(ENV['HOME'], '.prigger.yml')
+
+if File.exists?(confpath)
+  conf = YAML.load_file(confpath)
+  conf.each {|k,v| options[k] = v if options[k].nil?}
+end
+
 post_args = {
   :text => ARGF.read
 }
 
 options.each {|k,v| post_args[k] = v unless options[k].nil?}
-
+puts options.inspect
 puts Net::HTTP.post_form(CREATE_URL, post_args).body
