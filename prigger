@@ -4,7 +4,6 @@ require 'net/http'
 require 'optparse'
 require 'yaml'
 
-
 CREATE_URL = URI.parse("http://p.rig.gr/api/create")
 
 options = {}
@@ -48,5 +47,5 @@ post_args = {
 }
 
 options.each {|k,v| post_args[k] = v unless options[k].nil?}
-puts options.inspect
+
 puts Net::HTTP.post_form(CREATE_URL, post_args).body
